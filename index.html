@@ -26,15 +26,16 @@
   body{background:var(--bg);color:var(--ink);line-height:1.65;
     font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",Segoe UI,Roboto,sans-serif;
     -webkit-font-smoothing:antialiased;}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .wrap{max-width:1220px;margin:0 auto;padding:0 20px 80px}
   header.hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand2) 100%);color:#fff;
     border-radius:0 0 24px 24px;margin:0 -20px 40px;padding:48px 32px 40px;box-shadow:var(--shadow);text-align:center}
   header.hero .badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.32);
     padding:4px 14px;border-radius:999px;font-size:12px;letter-spacing:.6px;margin-bottom:16px}
   header.hero h1{margin:0 0 10px;font-size:30px;font-weight:800;letter-spacing:-.5px}
   header.hero p{margin:0 auto;max-width:640px;opacity:.94;font-size:15px}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  @media (max-width:860px){.grid{grid-template-columns:1fr}}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  @media (max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.grid{grid-template-columns:1fr}}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px 24px;
     box-shadow:var(--shadow);display:flex;flex-direction:column;position:relative}
   .card.reco{border-color:var(--brand);box-shadow:0 0 0 2px var(--brand-soft),var(--shadow)}
@@ -140,6 +141,26 @@
     <div class="spacer"></div>
     <a class="btn ghost" href="https://github.com/ybRoh/erp-download/releases/latest/download/ERP-Portable-PostgreSQL-Windows-20260714.zip">내려받기</a>
     <div class="sub">최초 실행 시 30초 · 더블클릭 실행</div>
+  </div>
+
+  <!-- ④ QMS 품질도구 (단일 HTML) -->
+  <div class="card">
+    <div class="ico">🧰</div>
+    <h2>QMS 품질도구</h2>
+    <p class="tag">단일 HTML · APQP/FMEA/ISIR/검사/감사/교육</p>
+    <div class="meta">
+      <span class="pill good">설치 불필요</span>
+      <span class="pill">모든 OS · 브라우저</span>
+      <span class="pill">약 0.7 MB</span>
+    </div>
+    <ul class="feat">
+      <li>파일 하나로 실행 (서버·인터넷 불필요)</li>
+      <li>품질 5-Core 도구 모음</li>
+      <li>데이터는 브라우저에 저장</li>
+    </ul>
+    <div class="spacer"></div>
+    <a class="btn primary" href="https://ybroh.github.io/erp-download/QMS-Suite-Portable.html" target="_blank" rel="noopener">브라우저에서 바로 실행</a>
+    <div class="sub"><a href="https://github.com/ybRoh/erp-download/releases/latest/download/QMS-Suite-Portable.html" style="color:var(--brand)">파일 내려받기(오프라인)</a></div>
   </div>
 
 </div>
