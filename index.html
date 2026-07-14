@@ -36,6 +36,12 @@
   .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
   @media (max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
   @media (max-width:560px){.grid{grid-template-columns:1fr}}
+  .dl-notice{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;text-align:center;
+    background:var(--brand-soft);border:1px dashed var(--brand);color:var(--ink);
+    border-radius:16px;padding:16px 22px;margin-bottom:26px;font-size:15px;font-weight:700}
+  .dl-notice.done{border-style:solid;border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent)}
+  .dl-notice a{color:var(--brand);font-weight:800;text-decoration:none;white-space:nowrap}
+  [hidden]{display:none !important}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px 24px;
     box-shadow:var(--shadow);display:flex;flex-direction:column;position:relative}
   .card.reco{border-color:var(--brand);box-shadow:0 0 0 2px var(--brand-soft),var(--shadow)}
@@ -80,7 +86,12 @@
   <p>용도에 맞는 버전을 선택해 내려받으세요. 개인·소규모는 <b>무설치 버전</b>이면 충분합니다.</p>
 </header>
 
-<div class="grid">
+<div class="dl-notice" id="dlNotice">
+  <span>💬 <b>댓글을 달면 다운로드 창이 보입니다.</b></span>
+  <a href="#comments">아래에서 댓글 남기기 ↓</a>
+</div>
+
+<div class="grid" id="downloads" hidden>
 
   <!-- ① 무설치 Windows (추천) -->
   <div class="card reco">
@@ -193,6 +204,18 @@
      사용법: 아래 DISQUS_SHORTNAME 을 disqus.com 에서 만든 값으로 바꾸면 즉시 활성화됩니다. -->
 <script>
   var DISQUS_SHORTNAME = "ybroh-erp"; // disqus.com 발급 shortname
+
+  // ── 소프트 게이트: 댓글을 달면 다운로드 영역이 열림 ──
+  function unlockDownloads() {
+    var g = document.getElementById("downloads");
+    var n = document.getElementById("dlNotice");
+    if (g) g.hidden = false;
+    if (n) { n.classList.add("done"); n.innerHTML = "✅ 감사합니다! 다운로드 창이 열렸습니다."; }
+    try { localStorage.setItem("erp_dl_unlocked", "1"); } catch (e) {}
+  }
+  // 이미 댓글을 남긴 방문자는 재방문 시 바로 열기
+  try { if (localStorage.getItem("erp_dl_unlocked") === "1") unlockDownloads(); } catch (e) {}
+
   (function () {
     if (!DISQUS_SHORTNAME || DISQUS_SHORTNAME.indexOf("YOUR_") === 0) return; // 미설정이면 '준비 중' 유지
     var pending = document.getElementById("disqus-pending");
@@ -200,6 +223,8 @@
     window.disqus_config = function () {
       this.page.url = window.location.href;
       this.page.identifier = "erp-download-home";
+      // 사용자가 새 댓글을 작성하면 다운로드 잠금 해제
+      this.callbacks.onNewComment = [function () { unlockDownloads(); }];
     };
     var d = document, s = d.createElement("script");
     s.src = "https://" + DISQUS_SHORTNAME + ".disqus.com/embed.js";
