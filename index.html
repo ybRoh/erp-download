@@ -176,10 +176,37 @@
   </ol>
 </div>
 
+<div class="how" id="comments">
+  <h3>💬 의견 남기기</h3>
+  <div id="disqus_thread"></div>
+  <p id="disqus-pending" style="color:var(--muted);font-size:14px;margin:6px 0 0">
+    댓글 기능을 준비 중입니다. 급한 문의는 <a href="mailto:ybr1090@gmail.com" style="color:var(--brand)">ybr1090@gmail.com</a> 으로 주세요.
+  </p>
+</div>
+
 <footer>
   이 프로그램은 <b>바이브코딩</b>으로 만들었습니다. 회사 실정에 맞게 자유롭게 수정해 쓰셔도 됩니다.<br>
   개선점·커스터마이징 문의 · <a href="mailto:ybr1090@gmail.com">ybr1090@gmail.com</a>
 </footer>
+
+<!-- ── Disqus 댓글 ─────────────────────────────────────────────
+     사용법: 아래 DISQUS_SHORTNAME 을 disqus.com 에서 만든 값으로 바꾸면 즉시 활성화됩니다. -->
+<script>
+  var DISQUS_SHORTNAME = "YOUR_DISQUS_SHORTNAME"; // ← disqus.com 에서 발급받은 shortname 으로 교체
+  (function () {
+    if (!DISQUS_SHORTNAME || DISQUS_SHORTNAME.indexOf("YOUR_") === 0) return; // 미설정이면 '준비 중' 유지
+    var pending = document.getElementById("disqus-pending");
+    if (pending) pending.style.display = "none";
+    window.disqus_config = function () {
+      this.page.url = window.location.href;
+      this.page.identifier = "erp-download-home";
+    };
+    var d = document, s = d.createElement("script");
+    s.src = "https://" + DISQUS_SHORTNAME + ".disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
 
 </div>
 </body>
