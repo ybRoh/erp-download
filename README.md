@@ -24,7 +24,7 @@
 
 > 🧰 **QMS 품질도구**는 설치·다운로드 없이 브라우저에서 바로 실행됩니다. 서버·인터넷 없이 파일 하나로 동작하며, 데이터는 브라우저에 저장됩니다.
 
-- 🌐 **[버전 선택 다운로드 페이지](https://ybroh.github.io/erp-download/)** · 📋 [모든 릴리스](https://github.com/ybRoh/erp-download/releases)
+- 🏠 **[소개(랜딩) 페이지](https://ybroh.github.io/erp-download/)** · 🌐 **[버전 선택 다운로드 페이지](https://ybroh.github.io/erp-download/download.html)** · 📋 [모든 릴리스](https://github.com/ybRoh/erp-download/releases)
 
 ---
 
