@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>자동차부품 ERP — 다운로드</title>
+<title>내맘대로ERP — 자동차부품 제조업 무설치 통합관리</title>
+<meta name="description" content="바이브코딩으로 만든 무설치 자동차부품 ERP. 설치 없이 더블클릭 한 번으로 생산·품질·구매·재고·영업·설비·원가를 통합관리하세요." />
 <style>
   :root{
     --bg:#eef1f5; --panel:#ffffff; --ink:#16202c; --muted:#5b6472; --line:#e2e6ec;
@@ -22,255 +23,210 @@
       --brand:#2f6bff;--brand2:#1e3a8a;--brand-soft:#e9f0ff;--ok:#0f9d6b;--warn:#b45309;
       --shadow:0 1px 3px rgba(0,0,0,.06),0 12px 30px rgba(20,40,80,.08);}
   *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
   html,body{margin:0;padding:0}
   body{background:var(--bg);color:var(--ink);line-height:1.65;
     font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",Segoe UI,Roboto,sans-serif;
     -webkit-font-smoothing:antialiased;}
-  .wrap{max-width:1220px;margin:0 auto;padding:0 20px 80px}
-  header.hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand2) 100%);color:#fff;
-    border-radius:0 0 24px 24px;margin:0 -20px 40px;padding:48px 32px 40px;box-shadow:var(--shadow);text-align:center}
-  header.hero .hero-maker{text-align:right;margin-bottom:10px;font-size:12.5px;padding-right:2px}
-  header.hero .hero-maker a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
-  header.hero .hero-maker a:hover{text-decoration:underline}
-  header.hero .badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.32);
-    padding:4px 14px;border-radius:999px;font-size:12px;letter-spacing:.6px;margin-bottom:16px}
-  header.hero h1{margin:0 0 10px;font-size:30px;font-weight:800;letter-spacing:-.5px}
-  header.hero .brand-name{font-family:"AppleMyungjo","Batang","Nanum Myeongjo",Georgia,serif;
-    font-style:italic;font-weight:800;color:#ffe27a;letter-spacing:.5px;
-    text-shadow:0 1px 8px rgba(0,0,0,.18)}
-  header.hero p{margin:0 auto;max-width:640px;opacity:.94;font-size:15px}
-  .previews{margin-bottom:30px}
-  .preview-title{font-size:14px;font-weight:800;color:var(--muted);text-align:center;margin:0 0 14px;letter-spacing:.4px}
-  .preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-  @media (max-width:760px){.preview-grid{grid-template-columns:1fr}}
-  .shot-card{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
-  .shot-card img{display:block;width:100%;height:auto;border-bottom:1px solid var(--line);transition:transform .3s ease}
-  .shot-card:hover img{transform:scale(1.02)}
-  .shot-card figcaption{padding:12px 16px;font-size:13px;color:var(--muted);line-height:1.55}
-  .shot-card figcaption b{color:var(--ink)}
-  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-  @media (max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
-  @media (max-width:560px){.grid{grid-template-columns:1fr}}
-  .dl-notice{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;text-align:center;
-    background:var(--brand-soft);border:1px dashed var(--brand);color:var(--ink);
-    border-radius:16px;padding:16px 22px;margin-bottom:26px;font-size:15px;font-weight:700}
-  .dl-notice.done{border-style:solid;border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent)}
-  .dl-notice a{color:var(--brand);font-weight:800;text-decoration:none;white-space:nowrap}
-  [hidden]{display:none !important}
-  .lockmsg{display:none;text-align:center;font-weight:700;font-size:13.5px;color:var(--muted);
-    background:var(--brand-soft);border:1px dashed var(--brand);border-radius:12px;padding:12px 10px}
-  .grid.locked .btn,.grid.locked .sub{display:none}
-  .grid.locked .lockmsg{display:block}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px 24px;
-    box-shadow:var(--shadow);display:flex;flex-direction:column;position:relative}
-  .card.reco{border-color:var(--brand);box-shadow:0 0 0 2px var(--brand-soft),var(--shadow)}
-  .ribbon{position:absolute;top:-11px;left:24px;background:var(--brand);color:#fff;font-size:12px;font-weight:700;
-    padding:3px 12px;border-radius:999px;letter-spacing:.3px}
-  .card .ico{font-size:34px;line-height:1;margin-bottom:12px}
-  .card h2{margin:0 0 4px;font-size:19px;font-weight:800}
-  .card .tag{color:var(--muted);font-size:13.5px;margin:0 0 14px}
-  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
-  .pill{font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
-  .pill.good{color:var(--ok);border-color:transparent;background:color-mix(in srgb,var(--ok) 14%,transparent)}
-  .pill.need{color:var(--warn);border-color:transparent;background:color-mix(in srgb,var(--warn) 14%,transparent)}
-  ul.feat{list-style:none;margin:0 0 20px;padding:0;font-size:13.5px;color:var(--ink)}
-  ul.feat li{padding:4px 0 4px 22px;position:relative;color:var(--muted)}
-  ul.feat li::before{content:"✓";position:absolute;left:0;color:var(--ok);font-weight:800}
-  .spacer{flex:1}
-  .btn{display:block;text-align:center;text-decoration:none;font-weight:700;font-size:15px;
-    padding:13px 16px;border-radius:12px;border:1px solid transparent;transition:transform .06s ease}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+  /* 상단 바 */
+  .nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 82%,transparent);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav .row{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .logo{font-weight:800;font-size:18px;letter-spacing:-.3px}
+  .logo .bn{font-family:"AppleMyungjo","Batang","Nanum Myeongjo",Georgia,serif;font-style:italic;color:var(--brand)}
+  .nav-cta{display:flex;align-items:center;gap:14px}
+  .nav-cta .maker{font-size:12.5px;color:var(--muted);text-decoration:none}
+  .nav-cta .maker:hover{color:var(--brand)}
+  .btn{display:inline-block;text-decoration:none;font-weight:700;border-radius:12px;border:1px solid transparent;
+    padding:11px 20px;font-size:15px;transition:transform .06s ease}
   .btn:active{transform:translateY(1px)}
   .btn.primary{background:var(--brand);color:#fff}
   .btn.ghost{background:transparent;color:var(--brand);border-color:var(--brand)}
-  .btn.disabled{background:var(--line);color:var(--muted);pointer-events:none}
-  .sub{margin-top:8px;text-align:center;font-size:12px;color:var(--muted)}
-  .how{margin-top:44px;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px 26px;box-shadow:var(--shadow)}
-  .how h3{margin:0 0 12px;font-size:17px;font-weight:800}
-  .how ol{margin:0;padding-left:20px;font-size:14px}
-  .how ol li{margin:5px 0}
-  .how code{background:var(--brand-soft);color:var(--brand);padding:1px 7px;border-radius:6px;font-size:13px}
-  footer{margin-top:40px;text-align:center;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);padding-top:26px}
+  .btn.sm{padding:8px 16px;font-size:14px}
+  .btn.lg{padding:15px 30px;font-size:17px;border-radius:14px}
+
+  /* 히어로 */
+  .hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand2) 100%);color:#fff;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;
+    background:rgba(255,255,255,.08)}
+  .hero .inner{padding:76px 0 84px;text-align:center;position:relative;z-index:1}
+  .hero .eyebrow{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);
+    padding:5px 16px;border-radius:999px;font-size:13px;letter-spacing:.5px;margin-bottom:20px}
+  .hero h1{margin:0 0 16px;font-size:44px;line-height:1.2;font-weight:900;letter-spacing:-1px}
+  .hero h1 .bn{font-family:"AppleMyungjo","Batang","Nanum Myeongjo",Georgia,serif;font-style:italic;
+    font-weight:800;color:#ffe27a;text-shadow:0 2px 12px rgba(0,0,0,.22)}
+  .hero p.lead{margin:0 auto 30px;max-width:660px;font-size:17px;opacity:.95}
+  .hero .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .hero .btn.primary{background:#fff;color:var(--brand2)}
+  .hero .btn.ghost{color:#fff;border-color:rgba(255,255,255,.7)}
+  .hero .note{margin-top:18px;font-size:13px;opacity:.85}
+  @media (max-width:640px){.hero h1{font-size:32px}.hero .inner{padding:56px 0 62px}}
+
+  /* 섹션 공통 */
+  section{padding:66px 0}
+  .sec-head{text-align:center;margin-bottom:40px}
+  .sec-head h2{margin:0 0 10px;font-size:28px;font-weight:800;letter-spacing:-.5px}
+  .sec-head p{margin:0 auto;max-width:600px;color:var(--muted);font-size:15px}
+
+  /* 특징 */
+  .feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  @media (max-width:900px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:520px){.feat-grid{grid-template-columns:1fr}}
+  .feat{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px 22px;box-shadow:var(--shadow)}
+  .feat .ic{font-size:32px;line-height:1;margin-bottom:12px}
+  .feat h3{margin:0 0 6px;font-size:17px;font-weight:800}
+  .feat p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+
+  /* 화면 */
+  .shots{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .shot-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media (max-width:760px){.shot-grid{grid-template-columns:1fr}}
+  .shot{margin:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);background:var(--bg)}
+  .shot img{display:block;width:100%;height:auto;border-bottom:1px solid var(--line);transition:transform .3s ease}
+  .shot:hover img{transform:scale(1.02)}
+  .shot figcaption{padding:14px 18px;font-size:13.5px;color:var(--muted);line-height:1.55}
+  .shot figcaption b{color:var(--ink)}
+
+  /* 시작하기 */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media (max-width:760px){.steps{grid-template-columns:1fr}}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px 22px;box-shadow:var(--shadow);position:relative}
+  .step .n{width:34px;height:34px;border-radius:50%;background:var(--brand);color:#fff;font-weight:800;
+    display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+  .step h3{margin:0 0 6px;font-size:16px;font-weight:800}
+  .step p{margin:0;color:var(--muted);font-size:14px}
+  .step code{background:var(--brand-soft);color:var(--brand);padding:1px 7px;border-radius:6px;font-size:13px}
+
+  /* 버전 요약 */
+  .plans{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:30px}
+  @media (max-width:900px){.plans{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:520px){.plans{grid-template-columns:1fr}}
+  .plan{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 16px;box-shadow:var(--shadow)}
+  .plan .t{font-weight:800;font-size:15px;margin-bottom:4px}
+  .plan .d{color:var(--muted);font-size:13px}
+  .plan .s{margin-top:8px;font-size:12px;color:var(--brand);font-weight:700}
+
+  /* CTA 밴드 */
+  .cta-band{background:linear-gradient(135deg,var(--brand) 0%,var(--brand2) 100%);color:#fff;border-radius:22px;
+    padding:44px 30px;text-align:center;box-shadow:var(--shadow)}
+  .cta-band h2{margin:0 0 10px;font-size:26px;font-weight:800}
+  .cta-band p{margin:0 0 22px;opacity:.94;font-size:15px}
+  .cta-band .btn.primary{background:#fff;color:var(--brand2)}
+
+  footer{color:var(--muted);font-size:13.5px;text-align:center;padding:40px 20px 60px}
   footer a{color:var(--brand);font-weight:700;text-decoration:none}
-  .toggle{position:fixed;top:14px;right:14px;background:var(--panel);border:1px solid var(--line);color:var(--ink);
-    border-radius:999px;padding:7px 14px;font-size:13px;cursor:pointer;box-shadow:var(--shadow);z-index:10}
+  .toggle{position:fixed;top:12px;right:12px;background:var(--panel);border:1px solid var(--line);color:var(--ink);
+    border-radius:999px;padding:6px 13px;font-size:13px;cursor:pointer;box-shadow:var(--shadow);z-index:30}
 </style>
 </head>
 <body>
 <button class="toggle" onclick="(function(){var r=document.documentElement;var d=(r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));r.setAttribute('data-theme',d==='dark'?'light':'dark')})()">🌗 테마</button>
-<div class="wrap">
 
+<!-- 상단 바 -->
+<div class="nav">
+  <div class="wrap row">
+    <div class="logo">🚗 <span class="bn">내맘대로ERP</span></div>
+    <div class="nav-cta">
+      <a class="maker" href="mailto:ybr1090@gmail.com">제작자 · ybr1090@gmail.com</a>
+      <a class="btn primary sm" href="download.html">다운로드</a>
+    </div>
+  </div>
+</div>
+
+<!-- 히어로 -->
 <header class="hero">
-  <div class="hero-maker"><a href="mailto:ybr1090@gmail.com">제작자 · ybr1090@gmail.com</a></div>
-  <div class="badge">DOWNLOAD · 자동차부품 ERP</div>
-  <h1>바이브코딩으로 만든 <span class="brand-name">내맘대로ERP</span></h1>
-  <p>용도에 맞는 버전을 선택해 내려받으세요. 개인·소규모는 <b>무설치 버전</b>이면 충분합니다.</p>
+  <div class="wrap inner">
+    <div class="eyebrow">자동차부품 제조업 · 무설치 통합관리(ERP/MES)</div>
+    <h1>바이브코딩으로 만든<br><span class="bn">내맘대로ERP</span></h1>
+    <p class="lead">설치도, 서버도 필요 없습니다. 압축을 풀고 <b>더블클릭 한 번</b>이면
+      생산·품질·구매·재고·영업·설비·원가를 하나의 화면에서 관리합니다.</p>
+    <div class="cta">
+      <a class="btn primary lg" href="download.html">무료로 다운로드 →</a>
+      <a class="btn ghost lg" href="#screens">화면 먼저 보기</a>
+    </div>
+    <div class="note">Windows 무설치 · 서버 설치형 · 고성능(PostgreSQL) · QMS 품질도구 — 용도별 4종 제공</div>
+  </div>
 </header>
 
-<div class="previews">
-  <p class="preview-title">📷 화면 미리보기 — 어떤 프로그램인지 먼저 확인하세요</p>
-  <div class="preview-grid">
-    <figure class="shot-card">
-      <a href="previews/erp.png" target="_blank" rel="noopener"><img src="previews/erp.png" alt="자동차부품 ERP 메인화면" loading="lazy" /></a>
-      <figcaption><b>자동차부품 ERP</b> — 무설치·서버설치형·고성능(3종) 공통 화면. 대시보드/기준정보/생산/품질/구매/재고/영업/설비/원가.</figcaption>
-    </figure>
-    <figure class="shot-card">
-      <a href="previews/qms.png" target="_blank" rel="noopener"><img src="previews/qms.png" alt="QMS 품질도구 메인화면" loading="lazy" /></a>
-      <figcaption><b>QMS 품질도구</b> — 단일 HTML. APQP·FMEA·ISIR·검사·감사·교육 통합 품질관리 대시보드.</figcaption>
-    </figure>
-  </div>
-</div>
-
-<div class="dl-notice" id="dlNotice">
-  <span>💬 <b>댓글을 달면 다운로드 창이 보입니다.</b></span>
-  <a href="#comments">아래에서 댓글 남기기 ↓</a>
-</div>
-
-<div class="grid locked" id="downloads">
-
-  <!-- ① 무설치 Windows (추천) -->
-  <div class="card reco">
-    <div class="ribbon">추천</div>
-    <div class="ico">💻</div>
-    <h2>무설치 버전</h2>
-    <p class="tag">개인·소규모 / 가장 간단</p>
-    <div class="meta">
-      <span class="pill good">설치 불필요</span>
-      <span class="pill">Windows</span>
-      <span class="pill">약 68 MB</span>
+<!-- 특징 -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>왜 내맘대로ERP인가요?</h2>
+      <p>복잡한 설치·구축 없이, 중소 제조 현장이 바로 쓸 수 있도록 만들었습니다.</p>
     </div>
-    <ul class="feat">
-      <li>압축 풀고 실행.bat 더블클릭</li>
-      <li>Docker·Node 설치 전혀 불필요</li>
-      <li>데이터는 폴더 안 파일 하나에 저장</li>
-    </ul>
-    <div class="spacer"></div>
-    <div class="lockmsg">🔒 댓글 작성 후 다운로드</div>
-    <a class="btn primary" href="https://github.com/ybRoh/erp-download/releases/latest/download/ERP-Portable-Windows-20260714.zip">내려받기</a>
-    <div class="sub">Windows 10/11 · 더블클릭 실행</div>
-  </div>
-
-  <!-- ② 서버 설치형 -->
-  <div class="card">
-    <div class="ico">🖥️</div>
-    <h2>서버 설치형</h2>
-    <p class="tag">사내 다중 사용자 / 운영 서버</p>
-    <div class="meta">
-      <span class="pill need">Docker·Node 필요</span>
-      <span class="pill">Win/Linux</span>
-      <span class="pill">약 1.8 MB</span>
+    <div class="feat-grid">
+      <div class="feat"><div class="ic">🖱️</div><h3>무설치 실행</h3><p>Docker·DB 서버·별도 프로그램 설치가 필요 없습니다. 실행 파일 더블클릭이면 끝.</p></div>
+      <div class="feat"><div class="ic">🧩</div><h3>통합 관리</h3><p>기준정보·생산·품질·구매·재고·영업·설비·원가를 한 시스템에서. LOT 추적까지.</p></div>
+      <div class="feat"><div class="ic">🛡️</div><h3>자동차 품질도구</h3><p>APQP·FMEA·ISIR·SPC·수입/공정/출하검사·부적합(NCR)·감사·교육 내장.</p></div>
+      <div class="feat"><div class="ic">✏️</div><h3>자유로운 수정</h3><p>바이브코딩으로 만들어 회사 실정에 맞게 자유롭게 커스터마이징 가능.</p></div>
     </div>
-    <ul class="feat">
-      <li>여러 사람이 동시 접속</li>
-      <li>PostgreSQL(Docker) 기반</li>
-      <li>동봉 DEPLOY.md 순서대로 설치</li>
-    </ul>
-    <div class="spacer"></div>
-    <div class="lockmsg">🔒 댓글 작성 후 다운로드</div>
-    <a class="btn ghost" href="https://github.com/ybRoh/erp-download/releases/latest/download/erp-web-deploy-20260714.zip">내려받기</a>
-    <div class="sub">IT 담당자용 · 서버 배포</div>
   </div>
+</section>
 
-  <!-- ③ 무설치 + PostgreSQL (준비중) -->
-  <div class="card">
-    <div class="ico">🚀</div>
-    <h2>무설치 (고성능)</h2>
-    <p class="tag">무설치 + PostgreSQL 동봉</p>
-    <div class="meta">
-      <span class="pill good">설치 불필요</span>
-      <span class="pill">Windows</span>
-      <span class="pill">약 108 MB</span>
+<!-- 화면 -->
+<section class="shots" id="screens">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>실제 화면</h2>
+      <p>이런 화면을 바로 쓰게 됩니다. 이미지를 클릭하면 크게 볼 수 있어요.</p>
     </div>
-    <ul class="feat">
-      <li>설치 없이 PostgreSQL 성능</li>
-      <li>PostgreSQL 내장 · 데이터 많은 환경</li>
-      <li>압축 풀고 실행.bat 더블클릭</li>
-    </ul>
-    <div class="spacer"></div>
-    <div class="lockmsg">🔒 댓글 작성 후 다운로드</div>
-    <a class="btn ghost" href="https://github.com/ybRoh/erp-download/releases/latest/download/ERP-Portable-PostgreSQL-Windows-20260714.zip">내려받기</a>
-    <div class="sub">최초 실행 시 30초 · 더블클릭 실행</div>
-  </div>
-
-  <!-- ④ QMS 품질도구 (단일 HTML) -->
-  <div class="card">
-    <div class="ico">🧰</div>
-    <h2>QMS 품질도구</h2>
-    <p class="tag">단일 HTML · APQP/FMEA/ISIR/검사/감사/교육</p>
-    <div class="meta">
-      <span class="pill good">설치 불필요</span>
-      <span class="pill">모든 OS · 브라우저</span>
-      <span class="pill">약 0.7 MB</span>
+    <div class="shot-grid">
+      <figure class="shot">
+        <a href="previews/erp.png" target="_blank" rel="noopener"><img src="previews/erp.png" alt="자동차부품 ERP 메인화면" loading="lazy" /></a>
+        <figcaption><b>자동차부품 ERP 대시보드</b> — 매출·생산·품질·설비 KPI를 한눈에.</figcaption>
+      </figure>
+      <figure class="shot">
+        <a href="previews/qms.png" target="_blank" rel="noopener"><img src="previews/qms.png" alt="QMS 품질도구 메인화면" loading="lazy" /></a>
+        <figcaption><b>QMS 품질도구</b> — APQP·FMEA·ISIR·검사·감사·교육 통합 품질관리.</figcaption>
+      </figure>
     </div>
-    <ul class="feat">
-      <li>파일 하나로 실행 (서버·인터넷 불필요)</li>
-      <li>품질 5-Core 도구 모음</li>
-      <li>데이터는 브라우저에 저장</li>
-    </ul>
-    <div class="spacer"></div>
-    <div class="lockmsg">🔒 댓글 작성 후 다운로드</div>
-    <a class="btn primary" href="https://ybroh.github.io/erp-download/QMS-Suite-Portable.html" target="_blank" rel="noopener">브라우저에서 바로 실행</a>
-    <div class="sub"><a href="https://github.com/ybRoh/erp-download/releases/latest/download/QMS-Suite-Portable.html" style="color:var(--brand)">파일 내려받기(오프라인)</a></div>
   </div>
+</section>
 
-</div>
+<!-- 시작하기 -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>3단계면 시작</h2>
+      <p>설치 과정이 없습니다. 정말 이게 전부예요.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>다운로드 & 압축 풀기</h3><p>용도에 맞는 버전을 내려받아 압축을 풉니다.</p></div>
+      <div class="step"><div class="n">2</div><h3>실행.bat 더블클릭</h3><p>잠시 후 브라우저가 자동으로 열립니다. (<code>localhost:3000</code>)</p></div>
+      <div class="step"><div class="n">3</div><h3>로그인</h3><p>아이디 <code>admin</code> / 비밀번호 <code>admin123</code> 으로 바로 사용.</p></div>
+    </div>
+  </div>
+</section>
 
-<div class="how">
-  <h3>🚀 무설치 버전 사용법</h3>
-  <ol>
-    <li>내려받은 <b>zip 압축을 풉니다.</b></li>
-    <li>폴더 안 <code>실행.bat</code> 을 더블클릭합니다.</li>
-    <li>잠시 후 브라우저가 자동으로 열립니다. (안 열리면 <code>http://localhost:3000</code>)</li>
-    <li>로그인: 아이디 <code>admin</code> / 비밀번호 <code>admin123</code></li>
-    <li>끄려면 검은 명령창을 닫습니다.</li>
-  </ol>
-</div>
-
-<div class="how" id="comments">
-  <h3>💬 의견 남기기</h3>
-  <div id="disqus_thread"></div>
-  <p id="disqus-pending" style="color:var(--muted);font-size:14px;margin:6px 0 0">
-    댓글 기능을 준비 중입니다. 급한 문의는 <a href="mailto:ybr1090@gmail.com" style="color:var(--brand)">ybr1090@gmail.com</a> 으로 주세요.
-  </p>
-</div>
+<!-- 버전 + CTA -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>용도별 4가지 버전</h2>
+      <p>개인·소규모부터 사내 서버 운영까지. 필요한 것만 고르세요.</p>
+    </div>
+    <div class="plans">
+      <div class="plan"><div class="t">💻 무설치 (추천)</div><div class="d">개인·소규모, 가장 간단</div><div class="s">Windows · 68MB</div></div>
+      <div class="plan"><div class="t">🖥️ 서버 설치형</div><div class="d">사내 다중 사용자(Docker)</div><div class="s">Win/Linux · 1.8MB</div></div>
+      <div class="plan"><div class="t">🚀 무설치 고성능</div><div class="d">PostgreSQL 내장</div><div class="s">Windows · 108MB</div></div>
+      <div class="plan"><div class="t">🧰 QMS 품질도구</div><div class="d">단일 HTML, 브라우저 실행</div><div class="s">모든 OS · 0.7MB</div></div>
+    </div>
+    <div class="cta-band">
+      <h2>지금 무료로 시작하세요</h2>
+      <p>설치 없이 더블클릭 한 번. 마음에 들면 회사에 맞게 마음대로 바꿔 쓰세요.</p>
+      <a class="btn primary lg" href="download.html">다운로드 페이지로 →</a>
+    </div>
+  </div>
+</section>
 
 <footer>
   이 프로그램은 <b>바이브코딩</b>으로 만들었습니다. 회사 실정에 맞게 자유롭게 수정해 쓰셔도 됩니다.<br>
   개선점·커스터마이징 문의 · <a href="mailto:ybr1090@gmail.com">ybr1090@gmail.com</a>
 </footer>
 
-<!-- ── Disqus 댓글 ─────────────────────────────────────────────
-     사용법: 아래 DISQUS_SHORTNAME 을 disqus.com 에서 만든 값으로 바꾸면 즉시 활성화됩니다. -->
-<script>
-  var DISQUS_SHORTNAME = "ybroh-erp"; // disqus.com 발급 shortname
-
-  // ── 소프트 게이트: 댓글을 달면 다운로드 영역이 열림 ──
-  function unlockDownloads() {
-    var g = document.getElementById("downloads");
-    var n = document.getElementById("dlNotice");
-    if (g) g.classList.remove("locked");
-    if (n) { n.classList.add("done"); n.innerHTML = "✅ 감사합니다! 다운로드 버튼이 열렸습니다."; }
-    try { localStorage.setItem("erp_dl_unlocked", "1"); } catch (e) {}
-  }
-  // 이미 댓글을 남긴 방문자는 재방문 시 바로 열기
-  try { if (localStorage.getItem("erp_dl_unlocked") === "1") unlockDownloads(); } catch (e) {}
-
-  (function () {
-    if (!DISQUS_SHORTNAME || DISQUS_SHORTNAME.indexOf("YOUR_") === 0) return; // 미설정이면 '준비 중' 유지
-    var pending = document.getElementById("disqus-pending");
-    if (pending) pending.style.display = "none";
-    window.disqus_config = function () {
-      this.page.url = window.location.href;
-      this.page.identifier = "erp-download-home";
-      // 사용자가 새 댓글을 작성하면 다운로드 잠금 해제
-      this.callbacks.onNewComment = [function () { unlockDownloads(); }];
-    };
-    var d = document, s = d.createElement("script");
-    s.src = "https://" + DISQUS_SHORTNAME + ".disqus.com/embed.js";
-    s.setAttribute("data-timestamp", +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
-
-</div>
 </body>
 </html>
